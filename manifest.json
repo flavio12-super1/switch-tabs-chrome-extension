@@ -1,0 +1,46 @@
+{
+  "name": "Switch Tabs",
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "Allows user to switch between tabs using the arrow keys.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "activeTab",
+    "scripting",
+    "cookies",
+    "webNavigation",
+    "webRequest"
+  ],
+  "host_permissions": ["http://localhost:4000/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["init.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "switch_right_tab": {
+      "suggested_key": {
+        "default": "Ctrl+Right"
+      },
+      "description": "Switch to the right tab"
+    },
+    "switch_left_tab": {
+      "suggested_key": {
+        "default": "Ctrl+Left"
+      },
+      "description": "Switch to the left tab"
+    },
+    "insertText": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K"
+      },
+      "description": "Insert Text"
+    }
+  }
+}
